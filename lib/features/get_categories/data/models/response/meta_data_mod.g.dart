@@ -7,8 +7,8 @@ part of 'meta_data_mod.dart';
 // **************************************************************************
 
 MetaDataMod _$MetaDataModFromJson(Map<String, dynamic> json) => MetaDataMod(
-  id: (json['id'] as num).toInt(),
-  key: json['key'] as String,
+  id: (json['id'] as num?)?.toInt(),
+  key: json['key'] as String?,
   value: json['value'],
 );
 

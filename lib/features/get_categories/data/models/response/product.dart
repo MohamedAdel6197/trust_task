@@ -7,189 +7,189 @@ part 'product.g.dart';
 
 @JsonSerializable()
 class Product {
-  int id;
-  String name;
-  String slug;
+  int? id;
+  String? name;
+  String? slug;
   @JsonKey(name: "date_created")
-  Date dateCreated;
+  Date? dateCreated;
   @JsonKey(name: "date_modified")
-  Date dateModified;
-  String status;
-  bool featured;
+  Date? dateModified;
+  String? status;
+  bool? featured;
   @JsonKey(name: "catalog_visibility")
-  String catalogVisibility;
-  String description;
+  String? catalogVisibility;
+  String? description;
   @JsonKey(name: "short_description")
-  String shortDescription;
-  String sku;
+  String? shortDescription;
+  String? sku;
   @JsonKey(name: "global_unique_id")
-  String globalUniqueId;
-  String price;
+  String? globalUniqueId;
+  String? price;
   @JsonKey(name: "regular_price")
-  String regularPrice;
+  String? regularPrice;
   @JsonKey(name: "sale_price")
-  String salePrice;
+  String? salePrice;
   @JsonKey(name: "date_on_sale_from")
   dynamic dateOnSaleFrom;
   @JsonKey(name: "date_on_sale_to")
   dynamic dateOnSaleTo;
   @JsonKey(name: "total_sales")
-  int totalSales;
+  int? totalSales;
   @JsonKey(name: "tax_status")
-  String taxStatus;
+  String? taxStatus;
   @JsonKey(name: "tax_class")
-  String taxClass;
+  String? taxClass;
   @JsonKey(name: "manage_stock")
-  bool manageStock;
+  bool? manageStock;
   @JsonKey(name: "stock_quantity")
   dynamic stockQuantity;
   @JsonKey(name: "stock_status")
-  String stockStatus;
-  String backorders;
+  String? stockStatus;
+  String? backorders;
   @JsonKey(name: "low_stock_amount")
-  String lowStockAmount;
+  String? lowStockAmount;
   @JsonKey(name: "sold_individually")
-  bool soldIndividually;
-  String weight;
-  String length;
-  String width;
-  String height;
+  bool? soldIndividually;
+  String? weight;
+  String? length;
+  String? width;
+  String? height;
   @JsonKey(name: "upsell_ids")
-  List<dynamic> upsellIds;
+  List<dynamic>? upsellIds;
   @JsonKey(name: "cross_sell_ids")
-  List<dynamic> crossSellIds;
+  List<dynamic>? crossSellIds;
   @JsonKey(name: "parent_id")
-  int parentId;
+  int? parentId;
   @JsonKey(name: "reviews_allowed")
-  bool reviewsAllowed;
+  bool? reviewsAllowed;
   @JsonKey(name: "purchase_note")
-  String purchaseNote;
-  List<dynamic> attributes;
+  String? purchaseNote;
+  dynamic attributes;
   @JsonKey(name: "default_attributes")
-  List<dynamic> defaultAttributes;
+  dynamic defaultAttributes;
   @JsonKey(name: "menu_order")
-  int menuOrder;
+  int? menuOrder;
   @JsonKey(name: "post_password")
-  String postPassword;
-  bool virtual;
-  bool downloadable;
+  String? postPassword;
+  bool? virtual;
+  bool? downloadable;
   @JsonKey(name: "category_ids")
-  List<int> categoryIds;
+  List<int>? categoryIds;
   @JsonKey(name: "tag_ids")
-  List<dynamic> tagIds;
+  List<dynamic>? tagIds;
   @JsonKey(name: "brand_ids")
-  List<dynamic> brandIds;
+  List<dynamic>? brandIds;
   @JsonKey(name: "shipping_class_id")
-  int shippingClassId;
-  List<dynamic> downloads;
+  int? shippingClassId;
+  List<dynamic>? downloads;
   @JsonKey(name: "image_id")
-  String imageId;
+  String? imageId;
   @JsonKey(name: "gallery_image_ids")
-  List<dynamic> galleryImageIds;
+  List<dynamic>? galleryImageIds;
   @JsonKey(name: "download_limit")
-  int downloadLimit;
+  int? downloadLimit;
   @JsonKey(name: "download_expiry")
-  int downloadExpiry;
+  int? downloadExpiry;
   @JsonKey(name: "rating_counts")
-  List<dynamic> ratingCounts;
+  List<dynamic>? ratingCounts;
   @JsonKey(name: "average_rating")
-  String averageRating;
+  String? averageRating;
   @JsonKey(name: "review_count")
-  int reviewCount;
+  int? reviewCount;
   @JsonKey(name: "cogs_value")
   dynamic cogsValue;
   @JsonKey(name: "meta_data")
-  List<MetaDataMod> metaData;
+  List<MetaDataMod>? metaData;
   @JsonKey(name: "name_en")
-  String nameEn;
+  String? nameEn;
   @JsonKey(name: "name_ar")
-  String nameAr;
+  String? nameAr;
   @JsonKey(name: "description_en")
-  String descriptionEn;
+  String? descriptionEn;
   @JsonKey(name: "description_ar")
-  String descriptionAr;
-  String image;
+  String? descriptionAr;
+  String? image;
   @JsonKey(name: "price_tax")
-  int priceTax;
+  int? priceTax;
   @JsonKey(name: "price_tax_sale")
-  int priceTaxSale;
-  int points;
+  int? priceTaxSale;
+  int? points;
   @JsonKey(name: "on_sale")
-  bool onSale;
+  bool? onSale;
   @JsonKey(name: "related_ids")
-  List<int> relatedIds;
-  String type;
+  List<int>? relatedIds;
+  String? type;
   @JsonKey(name: "related_products")
-  List<int> relatedProducts;
+  List<int>? relatedProducts;
 
   Product({
-    required this.id,
-    required this.name,
-    required this.slug,
-    required this.dateCreated,
-    required this.dateModified,
-    required this.status,
-    required this.featured,
-    required this.catalogVisibility,
-    required this.description,
-    required this.shortDescription,
-    required this.sku,
-    required this.globalUniqueId,
-    required this.price,
-    required this.regularPrice,
-    required this.salePrice,
-    required this.dateOnSaleFrom,
-    required this.dateOnSaleTo,
-    required this.totalSales,
-    required this.taxStatus,
-    required this.taxClass,
-    required this.manageStock,
-    required this.stockQuantity,
-    required this.stockStatus,
-    required this.backorders,
-    required this.lowStockAmount,
-    required this.soldIndividually,
-    required this.weight,
-    required this.length,
-    required this.width,
-    required this.height,
-    required this.upsellIds,
-    required this.crossSellIds,
-    required this.parentId,
-    required this.reviewsAllowed,
-    required this.purchaseNote,
-    required this.attributes,
-    required this.defaultAttributes,
-    required this.menuOrder,
-    required this.postPassword,
-    required this.virtual,
-    required this.downloadable,
-    required this.categoryIds,
-    required this.tagIds,
-    required this.brandIds,
-    required this.shippingClassId,
-    required this.downloads,
-    required this.imageId,
-    required this.galleryImageIds,
-    required this.downloadLimit,
-    required this.downloadExpiry,
-    required this.ratingCounts,
-    required this.averageRating,
-    required this.reviewCount,
-    required this.cogsValue,
-    required this.metaData,
-    required this.nameEn,
-    required this.nameAr,
-    required this.descriptionEn,
-    required this.descriptionAr,
-    required this.image,
-    required this.priceTax,
-    required this.priceTaxSale,
-    required this.points,
-    required this.onSale,
-    required this.relatedIds,
-    required this.type,
-    required this.relatedProducts,
+    this.id,
+    this.name,
+    this.slug,
+    this.dateCreated,
+    this.dateModified,
+    this.status,
+    this.featured,
+    this.catalogVisibility,
+    this.description,
+    this.shortDescription,
+    this.sku,
+    this.globalUniqueId,
+    this.price,
+    this.regularPrice,
+    this.salePrice,
+    this.dateOnSaleFrom,
+    this.dateOnSaleTo,
+    this.totalSales,
+    this.taxStatus,
+    this.taxClass,
+    this.manageStock,
+    this.stockQuantity,
+    this.stockStatus,
+    this.backorders,
+    this.lowStockAmount,
+    this.soldIndividually,
+    this.weight,
+    this.length,
+    this.width,
+    this.height,
+    this.upsellIds,
+    this.crossSellIds,
+    this.parentId,
+    this.reviewsAllowed,
+    this.purchaseNote,
+    this.attributes,
+    this.defaultAttributes,
+    this.menuOrder,
+    this.postPassword,
+    this.virtual,
+    this.downloadable,
+    this.categoryIds,
+    this.tagIds,
+    this.brandIds,
+    this.shippingClassId,
+    this.downloads,
+    this.imageId,
+    this.galleryImageIds,
+    this.downloadLimit,
+    this.downloadExpiry,
+    this.ratingCounts,
+    this.averageRating,
+    this.reviewCount,
+    this.cogsValue,
+    this.metaData,
+    this.nameEn,
+    this.nameAr,
+    this.descriptionEn,
+    this.descriptionAr,
+    this.image,
+    this.priceTax,
+    this.priceTaxSale,
+    this.points,
+    this.onSale,
+    this.relatedIds,
+    this.type,
+    this.relatedProducts,
   });
 
   factory Product.fromJson(Map<String, dynamic> json) =>

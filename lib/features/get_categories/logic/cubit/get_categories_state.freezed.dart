@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'api_result.dart';
+part of 'get_categories_state.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -12,7 +12,7 @@ part of 'api_result.dart';
 // dart format off
 T _$identity<T>(T value) => value;
 /// @nodoc
-mixin _$ApiResult<T> {
+mixin _$GetCategoriesState<T> {
 
 
 
@@ -20,7 +20,7 @@ mixin _$ApiResult<T> {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ApiResult<T>);
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is GetCategoriesState<T>);
 }
 
 
@@ -29,20 +29,20 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'ApiResult<$T>()';
+  return 'GetCategoriesState<$T>()';
 }
 
 
 }
 
 /// @nodoc
-class $ApiResultCopyWith<T,$Res>  {
-$ApiResultCopyWith(ApiResult<T> _, $Res Function(ApiResult<T>) __);
+class $GetCategoriesStateCopyWith<T,$Res>  {
+$GetCategoriesStateCopyWith(GetCategoriesState<T> _, $Res Function(GetCategoriesState<T>) __);
 }
 
 
-/// Adds pattern-matching-related methods to [ApiResult].
-extension ApiResultPatterns<T> on ApiResult<T> {
+/// Adds pattern-matching-related methods to [GetCategoriesState].
+extension GetCategoriesStatePatterns<T> on GetCategoriesState<T> {
 /// A variant of `map` that fallback to returning `orElse`.
 ///
 /// It is equivalent to doing:
@@ -55,10 +55,12 @@ extension ApiResultPatterns<T> on ApiResult<T> {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( Success<T> value)?  success,TResult Function( Failure<T> value)?  failure,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( Initial<T> value)?  initial,TResult Function( Loading<T> value)?  loading,TResult Function( Success<T> value)?  success,TResult Function( Failure<T> value)?  failure,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
-case Success() when success != null:
+case Initial() when initial != null:
+return initial(_that);case Loading() when loading != null:
+return loading(_that);case Success() when success != null:
 return success(_that);case Failure() when failure != null:
 return failure(_that);case _:
   return orElse();
@@ -78,10 +80,12 @@ return failure(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( Success<T> value)  success,required TResult Function( Failure<T> value)  failure,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( Initial<T> value)  initial,required TResult Function( Loading<T> value)  loading,required TResult Function( Success<T> value)  success,required TResult Function( Failure<T> value)  failure,}){
 final _that = this;
 switch (_that) {
-case Success():
+case Initial():
+return initial(_that);case Loading():
+return loading(_that);case Success():
 return success(_that);case Failure():
 return failure(_that);case _:
   throw StateError('Unexpected subclass');
@@ -100,10 +104,12 @@ return failure(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( Success<T> value)?  success,TResult? Function( Failure<T> value)?  failure,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( Initial<T> value)?  initial,TResult? Function( Loading<T> value)?  loading,TResult? Function( Success<T> value)?  success,TResult? Function( Failure<T> value)?  failure,}){
 final _that = this;
 switch (_that) {
-case Success() when success != null:
+case Initial() when initial != null:
+return initial(_that);case Loading() when loading != null:
+return loading(_that);case Success() when success != null:
 return success(_that);case Failure() when failure != null:
 return failure(_that);case _:
   return null;
@@ -122,10 +128,12 @@ return failure(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( T data)?  success,TResult Function( ErrorHandler error)?  failure,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function( List<Category> categories)?  success,TResult Function( ErrorHandler error)?  failure,required TResult orElse(),}) {final _that = this;
 switch (_that) {
-case Success() when success != null:
-return success(_that.data);case Failure() when failure != null:
+case Initial() when initial != null:
+return initial();case Loading() when loading != null:
+return loading();case Success() when success != null:
+return success(_that.categories);case Failure() when failure != null:
 return failure(_that.error);case _:
   return orElse();
 
@@ -144,10 +152,12 @@ return failure(_that.error);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( T data)  success,required TResult Function( ErrorHandler error)  failure,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function( List<Category> categories)  success,required TResult Function( ErrorHandler error)  failure,}) {final _that = this;
 switch (_that) {
-case Success():
-return success(_that.data);case Failure():
+case Initial():
+return initial();case Loading():
+return loading();case Success():
+return success(_that.categories);case Failure():
 return failure(_that.error);case _:
   throw StateError('Unexpected subclass');
 
@@ -165,10 +175,12 @@ return failure(_that.error);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( T data)?  success,TResult? Function( ErrorHandler error)?  failure,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function( List<Category> categories)?  success,TResult? Function( ErrorHandler error)?  failure,}) {final _that = this;
 switch (_that) {
-case Success() when success != null:
-return success(_that.data);case Failure() when failure != null:
+case Initial() when initial != null:
+return initial();case Loading() when loading != null:
+return loading();case Success() when success != null:
+return success(_that.categories);case Failure() when failure != null:
 return failure(_that.error);case _:
   return null;
 
@@ -180,13 +192,83 @@ return failure(_that.error);case _:
 /// @nodoc
 
 
-class Success<T> implements ApiResult<T> {
-  const Success(this.data);
+class Initial<T> implements GetCategoriesState<T> {
+  const Initial();
   
 
- final  T data;
 
-/// Create a copy of ApiResult
+
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Initial<T>);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'GetCategoriesState<$T>.initial()';
+}
+
+
+}
+
+
+
+
+/// @nodoc
+
+
+class Loading<T> implements GetCategoriesState<T> {
+  const Loading();
+  
+
+
+
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Loading<T>);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'GetCategoriesState<$T>.loading()';
+}
+
+
+}
+
+
+
+
+/// @nodoc
+
+
+class Success<T> implements GetCategoriesState<T> {
+  const Success(final  List<Category> categories): _categories = categories;
+  
+
+ final  List<Category> _categories;
+ List<Category> get categories {
+  if (_categories is EqualUnmodifiableListView) return _categories;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_categories);
+}
+
+
+/// Create a copy of GetCategoriesState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
@@ -196,27 +278,27 @@ $SuccessCopyWith<T, Success<T>> get copyWith => _$SuccessCopyWithImpl<T, Success
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is Success<T>&&const DeepCollectionEquality().equals(other.data, data));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Success<T>&&const DeepCollectionEquality().equals(other._categories, _categories));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(data));
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_categories));
 
 @override
 String toString() {
-  return 'ApiResult<$T>.success(data: $data)';
+  return 'GetCategoriesState<$T>.success(categories: $categories)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class $SuccessCopyWith<T,$Res> implements $ApiResultCopyWith<T, $Res> {
+abstract mixin class $SuccessCopyWith<T,$Res> implements $GetCategoriesStateCopyWith<T, $Res> {
   factory $SuccessCopyWith(Success<T> value, $Res Function(Success<T>) _then) = _$SuccessCopyWithImpl;
 @useResult
 $Res call({
- T data
+ List<Category> categories
 });
 
 
@@ -231,12 +313,12 @@ class _$SuccessCopyWithImpl<T,$Res>
   final Success<T> _self;
   final $Res Function(Success<T>) _then;
 
-/// Create a copy of ApiResult
+/// Create a copy of GetCategoriesState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? data = freezed,}) {
+@pragma('vm:prefer-inline') $Res call({Object? categories = null,}) {
   return _then(Success<T>(
-freezed == data ? _self.data : data // ignore: cast_nullable_to_non_nullable
-as T,
+null == categories ? _self._categories : categories // ignore: cast_nullable_to_non_nullable
+as List<Category>,
   ));
 }
 
@@ -246,13 +328,13 @@ as T,
 /// @nodoc
 
 
-class Failure<T> implements ApiResult<T> {
+class Failure<T> implements GetCategoriesState<T> {
   const Failure(this.error);
   
 
  final  ErrorHandler error;
 
-/// Create a copy of ApiResult
+/// Create a copy of GetCategoriesState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
@@ -271,14 +353,14 @@ int get hashCode => Object.hash(runtimeType,error);
 
 @override
 String toString() {
-  return 'ApiResult<$T>.failure(error: $error)';
+  return 'GetCategoriesState<$T>.failure(error: $error)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class $FailureCopyWith<T,$Res> implements $ApiResultCopyWith<T, $Res> {
+abstract mixin class $FailureCopyWith<T,$Res> implements $GetCategoriesStateCopyWith<T, $Res> {
   factory $FailureCopyWith(Failure<T> value, $Res Function(Failure<T>) _then) = _$FailureCopyWithImpl;
 @useResult
 $Res call({
@@ -297,7 +379,7 @@ class _$FailureCopyWithImpl<T,$Res>
   final Failure<T> _self;
   final $Res Function(Failure<T>) _then;
 
-/// Create a copy of ApiResult
+/// Create a copy of GetCategoriesState
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') $Res call({Object? error = null,}) {
   return _then(Failure<T>(

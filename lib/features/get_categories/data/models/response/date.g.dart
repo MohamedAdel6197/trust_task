@@ -7,13 +7,13 @@ part of 'date.dart';
 // **************************************************************************
 
 Date _$DateFromJson(Map<String, dynamic> json) => Date(
-  date: DateTime.parse(json['date'] as String),
-  timezoneType: (json['timezone_type'] as num).toInt(),
-  timezone: json['timezone'] as String,
+  date: json['date'] == null ? null : DateTime.parse(json['date'] as String),
+  timezoneType: (json['timezone_type'] as num?)?.toInt(),
+  timezone: json['timezone'] as String?,
 );
 
 Map<String, dynamic> _$DateToJson(Date instance) => <String, dynamic>{
-  'date': instance.date.toIso8601String(),
+  'date': instance.date?.toIso8601String(),
   'timezone_type': instance.timezoneType,
   'timezone': instance.timezone,
 };

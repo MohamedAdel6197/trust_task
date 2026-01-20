@@ -58,21 +58,21 @@ class ValueClass {
 
 @JsonSerializable()
 class ValueCugv {
-  String name;
-  String type;
-  String action;
+  String? name;
+  String? type;
+  String? action;
   @JsonKey(name: "action_val")
-  ActionVal actionVal;
-  CugvTimer timer;
-  List<String> roles;
+  ActionVal? actionVal;
+  CugvTimer? timer;
+  List<String>? roles;
 
   ValueCugv({
-    required this.name,
-    required this.type,
-    required this.action,
-    required this.actionVal,
-    required this.timer,
-    required this.roles,
+    this.name,
+    this.type,
+    this.action,
+    this.actionVal,
+    this.timer,
+    this.roles,
   });
 
   factory ValueCugv.fromJson(Map<String, dynamic> json) =>
@@ -83,21 +83,21 @@ class ValueCugv {
 
 @JsonSerializable()
 class ValueG531 {
-  String name;
-  String type;
-  String action;
+  String? name;
+  String? type;
+  String? action;
   @JsonKey(name: "action_val")
-  ActionVal actionVal;
-  G531Timer timer;
-  List<String> roles;
+  ActionVal? actionVal;
+  G531Timer? timer;
+  List<String>? roles;
 
   ValueG531({
-    required this.name,
-    required this.type,
-    required this.action,
-    required this.actionVal,
-    required this.timer,
-    required this.roles,
+    this.name,
+    this.type,
+    this.action,
+    this.actionVal,
+    this.timer,
+    this.roles,
   });
 
   factory ValueG531.fromJson(Map<String, dynamic> json) =>
@@ -108,21 +108,21 @@ class ValueG531 {
 
 @JsonSerializable()
 class ValueHtdc {
-  String name;
-  String type;
-  String action;
+  String? name;
+  String? type;
+  String? action;
   @JsonKey(name: "action_val")
-  ActionVal actionVal;
-  HtdcTimer timer;
-  List<String> roles;
+  ActionVal? actionVal;
+  HtdcTimer? timer;
+  List<String>? roles;
 
   ValueHtdc({
-    required this.name,
-    required this.type,
-    required this.action,
-    required this.actionVal,
-    required this.timer,
-    required this.roles,
+    this.name,
+    this.type,
+    this.action,
+    this.actionVal,
+    this.timer,
+    this.roles,
   });
 
   factory ValueHtdc.fromJson(Map<String, dynamic> json) =>
@@ -133,21 +133,21 @@ class ValueHtdc {
 
 @JsonSerializable()
 class ValueLohb {
-  String name;
-  String type;
-  String action;
+  String? name;
+  String? type;
+  String? action;
   @JsonKey(name: "action_val")
-  ActionVal actionVal;
-  LohbTimer timer;
-  List<String> roles;
+  ActionVal? actionVal;
+  LohbTimer? timer;
+  List<String>? roles;
 
   ValueLohb({
-    required this.name,
-    required this.type,
-    required this.action,
-    required this.actionVal,
-    required this.timer,
-    required this.roles,
+    this.name,
+    this.type,
+    this.action,
+    this.actionVal,
+    this.timer,
+    this.roles,
   });
 
   factory ValueLohb.fromJson(Map<String, dynamic> json) =>
@@ -158,21 +158,21 @@ class ValueLohb {
 
 @JsonSerializable()
 class Value1Tf0 {
-  String name;
-  String type;
-  String action;
+  String? name;
+  String? type;
+  String? action;
   @JsonKey(name: "action_val")
-  ActionVal actionVal;
-  The1Tf0Timer timer;
-  List<String> roles;
+  ActionVal? actionVal;
+  The1Tf0Timer? timer;
+  List<String>? roles;
 
   Value1Tf0({
-    required this.name,
-    required this.type,
-    required this.action,
-    required this.actionVal,
-    required this.timer,
-    required this.roles,
+    this.name,
+    this.type,
+    this.action,
+    this.actionVal,
+    this.timer,
+    this.roles,
   });
 
   factory Value1Tf0.fromJson(Map<String, dynamic> json) =>
@@ -183,21 +183,21 @@ class Value1Tf0 {
 
 @JsonSerializable()
 class Value1Tn8 {
-  String name;
-  String type;
-  String action;
+  String? name;
+  String? type;
+  String? action;
   @JsonKey(name: "action_val")
-  ActionVal actionVal;
-  The1Tn8Timer timer;
-  List<String> roles;
+  ActionVal? actionVal;
+  The1Tn8Timer? timer;
+  List<String>? roles;
 
   Value1Tn8({
-    required this.name,
-    required this.type,
-    required this.action,
-    required this.actionVal,
-    required this.timer,
-    required this.roles,
+    this.name,
+    this.type,
+    this.action,
+    this.actionVal,
+    this.timer,
+    this.roles,
   });
 
   factory Value1Tn8.fromJson(Map<String, dynamic> json) =>
@@ -208,21 +208,21 @@ class Value1Tn8 {
 
 @JsonSerializable()
 class Value6Irg {
-  String name;
-  String type;
-  String action;
+  String? name;
+  String? type;
+  String? action;
   @JsonKey(name: "action_val")
-  ActionVal actionVal;
-  The6IrgTimer timer;
-  List<String> roles;
+  ActionVal? actionVal;
+  The6IrgTimer? timer;
+  List<String>? roles;
 
   Value6Irg({
-    required this.name,
-    required this.type,
-    required this.action,
-    required this.actionVal,
-    required this.timer,
-    required this.roles,
+    this.name,
+    this.type,
+    this.action,
+    this.actionVal,
+    this.timer,
+    this.roles,
   });
 
   factory Value6Irg.fromJson(Map<String, dynamic> json) =>
@@ -233,21 +233,21 @@ class Value6Irg {
 
 @JsonSerializable()
 class ValueYbqb {
-  String name;
-  String type;
-  String action;
+  String? name;
+  String? type;
+  String? action;
   @JsonKey(name: "action_val")
-  ActionVal actionVal;
-  YbqbTimer timer;
-  List<String> roles;
+  ActionVal? actionVal;
+  YbqbTimer? timer;
+  List<String>? roles;
 
   ValueYbqb({
-    required this.name,
-    required this.type,
-    required this.action,
-    required this.actionVal,
-    required this.timer,
-    required this.roles,
+    this.name,
+    this.type,
+    this.action,
+    this.actionVal,
+    this.timer,
+    this.roles,
   });
 
   factory ValueYbqb.fromJson(Map<String, dynamic> json) =>
@@ -258,15 +258,11 @@ class ValueYbqb {
 
 @JsonSerializable()
 class ActionVal {
-  String value;
-  String base;
-  String visibility;
+  String? value;
+  String? base;
+  String? visibility;
 
-  ActionVal({
-    required this.value,
-    required this.base,
-    required this.visibility,
-  });
+  ActionVal({this.value, this.base, this.visibility});
 
   factory ActionVal.fromJson(Map<String, dynamic> json) =>
       _$ActionValFromJson(json);

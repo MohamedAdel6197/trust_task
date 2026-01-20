@@ -4,14 +4,18 @@ part 'failure.g.dart';
 
 @JsonSerializable()
 class Failure {
-  final int errorCode;
-  @JsonKey(name: 'message')
-  final String? errorMessage;
+  final String? code;
+  final String? message;
 
-  Failure(this.errorCode, this.errorMessage);
+  @JsonKey(name: 'data')
+  final Map<String, dynamic>? errorDetails;
+
+  Failure(this.code, this.message, this.errorDetails);
 
   factory Failure.fromJson(Map<String, dynamic> json) =>
       _$FailureFromJson(json);
 
   Map<String, dynamic> toJson() => _$FailureToJson(this);
+
+  String get messageOfError => message ?? 'Unknown error (Code: $code)';
 }

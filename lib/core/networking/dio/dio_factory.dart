@@ -1,14 +1,14 @@
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
-import '../../constants/string_constants.dart';
-import '../../helper/shared_pref_helper.dart';
-
 class DioFactory {
-  /// private constructor as I don't want to allow creating an instance of this class
   DioFactory._();
+
+  static const String _username = 'testapp';
+  static const String _password = '5S0Q YjyH 4s3G elpe 5F8v u8as';
 
   static Dio? dio;
 
@@ -28,31 +28,21 @@ class DioFactory {
     }
   }
 
-  static void addDioHeaders() async {
-    String? token = await SharedPrefHelper.getSecuredString(
-      AppConstants.guestId,
-    );
-    log("addDioHeaders token : $token");
-
-    if (token.isEmpty) {
-      dio?.options.headers = {
-        'Accept': 'application/json',
-        // 'Content-Type': 'application/json',
-      };
-    } else {
-      dio?.options.headers = {
-        'Accept': 'application/json',
-        // 'Content-Type': 'application/json',
-        'Authorization': 'Bearer $token',
-      };
-    }
+  static String _getBasicAuthHeader() {
+    final credentials = '$_username:$_password';
+    final encoded = base64Encode(utf8.encode(credentials));
+    return 'Basic $encoded';
   }
 
-  static void addDioInterceptors() async {
-    String? token = await SharedPrefHelper.getSecuredString(
-      AppConstants.guestId,
-    );
+  static void addDioHeaders() {
+    dio?.options.headers = {
+      'Accept': 'application/json',
+      'Authorization': _getBasicAuthHeader(),
+    };
+    log("addDioHeaders: Authorization header set");
+  }
 
+  static void addDioInterceptors() {
     dio?.interceptors.add(
       PrettyDioLogger(
         requestBody: true,
@@ -65,9 +55,8 @@ class DioFactory {
     dio?.interceptors.add(
       InterceptorsWrapper(
         onRequest: (options, handler) {
-          if (token.isNotEmpty) {
-            options.headers["Authorization"] = "Bearer $token";
-          }
+          // Ensure Basic Auth is always present
+          options.headers["Authorization"] = _getBasicAuthHeader();
           return handler.next(options);
         },
         onResponse: (response, handler) {
@@ -78,12 +67,5 @@ class DioFactory {
         },
       ),
     );
-  }
-
-  static void setTokenIntoHeader(String token) {
-    dio?.options.headers = {
-      'Authorization': 'Bearer $token',
-      'Accept': 'application/json',
-    };
   }
 }

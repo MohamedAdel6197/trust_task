@@ -56,12 +56,16 @@ Map<String, dynamic> _$ValueClassToJson(ValueClass instance) =>
     };
 
 ValueCugv _$ValueCugvFromJson(Map<String, dynamic> json) => ValueCugv(
-  name: json['name'] as String,
-  type: json['type'] as String,
-  action: json['action'] as String,
-  actionVal: ActionVal.fromJson(json['action_val'] as Map<String, dynamic>),
-  timer: CugvTimer.fromJson(json['timer'] as Map<String, dynamic>),
-  roles: (json['roles'] as List<dynamic>).map((e) => e as String).toList(),
+  name: json['name'] as String?,
+  type: json['type'] as String?,
+  action: json['action'] as String?,
+  actionVal: json['action_val'] == null
+      ? null
+      : ActionVal.fromJson(json['action_val'] as Map<String, dynamic>),
+  timer: json['timer'] == null
+      ? null
+      : CugvTimer.fromJson(json['timer'] as Map<String, dynamic>),
+  roles: (json['roles'] as List<dynamic>?)?.map((e) => e as String).toList(),
 );
 
 Map<String, dynamic> _$ValueCugvToJson(ValueCugv instance) => <String, dynamic>{
@@ -74,12 +78,16 @@ Map<String, dynamic> _$ValueCugvToJson(ValueCugv instance) => <String, dynamic>{
 };
 
 ValueG531 _$ValueG531FromJson(Map<String, dynamic> json) => ValueG531(
-  name: json['name'] as String,
-  type: json['type'] as String,
-  action: json['action'] as String,
-  actionVal: ActionVal.fromJson(json['action_val'] as Map<String, dynamic>),
-  timer: G531Timer.fromJson(json['timer'] as Map<String, dynamic>),
-  roles: (json['roles'] as List<dynamic>).map((e) => e as String).toList(),
+  name: json['name'] as String?,
+  type: json['type'] as String?,
+  action: json['action'] as String?,
+  actionVal: json['action_val'] == null
+      ? null
+      : ActionVal.fromJson(json['action_val'] as Map<String, dynamic>),
+  timer: json['timer'] == null
+      ? null
+      : G531Timer.fromJson(json['timer'] as Map<String, dynamic>),
+  roles: (json['roles'] as List<dynamic>?)?.map((e) => e as String).toList(),
 );
 
 Map<String, dynamic> _$ValueG531ToJson(ValueG531 instance) => <String, dynamic>{
@@ -92,12 +100,16 @@ Map<String, dynamic> _$ValueG531ToJson(ValueG531 instance) => <String, dynamic>{
 };
 
 ValueHtdc _$ValueHtdcFromJson(Map<String, dynamic> json) => ValueHtdc(
-  name: json['name'] as String,
-  type: json['type'] as String,
-  action: json['action'] as String,
-  actionVal: ActionVal.fromJson(json['action_val'] as Map<String, dynamic>),
-  timer: HtdcTimer.fromJson(json['timer'] as Map<String, dynamic>),
-  roles: (json['roles'] as List<dynamic>).map((e) => e as String).toList(),
+  name: json['name'] as String?,
+  type: json['type'] as String?,
+  action: json['action'] as String?,
+  actionVal: json['action_val'] == null
+      ? null
+      : ActionVal.fromJson(json['action_val'] as Map<String, dynamic>),
+  timer: json['timer'] == null
+      ? null
+      : HtdcTimer.fromJson(json['timer'] as Map<String, dynamic>),
+  roles: (json['roles'] as List<dynamic>?)?.map((e) => e as String).toList(),
 );
 
 Map<String, dynamic> _$ValueHtdcToJson(ValueHtdc instance) => <String, dynamic>{
@@ -110,12 +122,16 @@ Map<String, dynamic> _$ValueHtdcToJson(ValueHtdc instance) => <String, dynamic>{
 };
 
 ValueLohb _$ValueLohbFromJson(Map<String, dynamic> json) => ValueLohb(
-  name: json['name'] as String,
-  type: json['type'] as String,
-  action: json['action'] as String,
-  actionVal: ActionVal.fromJson(json['action_val'] as Map<String, dynamic>),
-  timer: LohbTimer.fromJson(json['timer'] as Map<String, dynamic>),
-  roles: (json['roles'] as List<dynamic>).map((e) => e as String).toList(),
+  name: json['name'] as String?,
+  type: json['type'] as String?,
+  action: json['action'] as String?,
+  actionVal: json['action_val'] == null
+      ? null
+      : ActionVal.fromJson(json['action_val'] as Map<String, dynamic>),
+  timer: json['timer'] == null
+      ? null
+      : LohbTimer.fromJson(json['timer'] as Map<String, dynamic>),
+  roles: (json['roles'] as List<dynamic>?)?.map((e) => e as String).toList(),
 );
 
 Map<String, dynamic> _$ValueLohbToJson(ValueLohb instance) => <String, dynamic>{
@@ -128,12 +144,16 @@ Map<String, dynamic> _$ValueLohbToJson(ValueLohb instance) => <String, dynamic>{
 };
 
 Value1Tf0 _$Value1Tf0FromJson(Map<String, dynamic> json) => Value1Tf0(
-  name: json['name'] as String,
-  type: json['type'] as String,
-  action: json['action'] as String,
-  actionVal: ActionVal.fromJson(json['action_val'] as Map<String, dynamic>),
-  timer: The1Tf0Timer.fromJson(json['timer'] as Map<String, dynamic>),
-  roles: (json['roles'] as List<dynamic>).map((e) => e as String).toList(),
+  name: json['name'] as String?,
+  type: json['type'] as String?,
+  action: json['action'] as String?,
+  actionVal: json['action_val'] == null
+      ? null
+      : ActionVal.fromJson(json['action_val'] as Map<String, dynamic>),
+  timer: json['timer'] == null
+      ? null
+      : The1Tf0Timer.fromJson(json['timer'] as Map<String, dynamic>),
+  roles: (json['roles'] as List<dynamic>?)?.map((e) => e as String).toList(),
 );
 
 Map<String, dynamic> _$Value1Tf0ToJson(Value1Tf0 instance) => <String, dynamic>{
@@ -146,12 +166,16 @@ Map<String, dynamic> _$Value1Tf0ToJson(Value1Tf0 instance) => <String, dynamic>{
 };
 
 Value1Tn8 _$Value1Tn8FromJson(Map<String, dynamic> json) => Value1Tn8(
-  name: json['name'] as String,
-  type: json['type'] as String,
-  action: json['action'] as String,
-  actionVal: ActionVal.fromJson(json['action_val'] as Map<String, dynamic>),
-  timer: The1Tn8Timer.fromJson(json['timer'] as Map<String, dynamic>),
-  roles: (json['roles'] as List<dynamic>).map((e) => e as String).toList(),
+  name: json['name'] as String?,
+  type: json['type'] as String?,
+  action: json['action'] as String?,
+  actionVal: json['action_val'] == null
+      ? null
+      : ActionVal.fromJson(json['action_val'] as Map<String, dynamic>),
+  timer: json['timer'] == null
+      ? null
+      : The1Tn8Timer.fromJson(json['timer'] as Map<String, dynamic>),
+  roles: (json['roles'] as List<dynamic>?)?.map((e) => e as String).toList(),
 );
 
 Map<String, dynamic> _$Value1Tn8ToJson(Value1Tn8 instance) => <String, dynamic>{
@@ -164,12 +188,16 @@ Map<String, dynamic> _$Value1Tn8ToJson(Value1Tn8 instance) => <String, dynamic>{
 };
 
 Value6Irg _$Value6IrgFromJson(Map<String, dynamic> json) => Value6Irg(
-  name: json['name'] as String,
-  type: json['type'] as String,
-  action: json['action'] as String,
-  actionVal: ActionVal.fromJson(json['action_val'] as Map<String, dynamic>),
-  timer: The6IrgTimer.fromJson(json['timer'] as Map<String, dynamic>),
-  roles: (json['roles'] as List<dynamic>).map((e) => e as String).toList(),
+  name: json['name'] as String?,
+  type: json['type'] as String?,
+  action: json['action'] as String?,
+  actionVal: json['action_val'] == null
+      ? null
+      : ActionVal.fromJson(json['action_val'] as Map<String, dynamic>),
+  timer: json['timer'] == null
+      ? null
+      : The6IrgTimer.fromJson(json['timer'] as Map<String, dynamic>),
+  roles: (json['roles'] as List<dynamic>?)?.map((e) => e as String).toList(),
 );
 
 Map<String, dynamic> _$Value6IrgToJson(Value6Irg instance) => <String, dynamic>{
@@ -182,12 +210,16 @@ Map<String, dynamic> _$Value6IrgToJson(Value6Irg instance) => <String, dynamic>{
 };
 
 ValueYbqb _$ValueYbqbFromJson(Map<String, dynamic> json) => ValueYbqb(
-  name: json['name'] as String,
-  type: json['type'] as String,
-  action: json['action'] as String,
-  actionVal: ActionVal.fromJson(json['action_val'] as Map<String, dynamic>),
-  timer: YbqbTimer.fromJson(json['timer'] as Map<String, dynamic>),
-  roles: (json['roles'] as List<dynamic>).map((e) => e as String).toList(),
+  name: json['name'] as String?,
+  type: json['type'] as String?,
+  action: json['action'] as String?,
+  actionVal: json['action_val'] == null
+      ? null
+      : ActionVal.fromJson(json['action_val'] as Map<String, dynamic>),
+  timer: json['timer'] == null
+      ? null
+      : YbqbTimer.fromJson(json['timer'] as Map<String, dynamic>),
+  roles: (json['roles'] as List<dynamic>?)?.map((e) => e as String).toList(),
 );
 
 Map<String, dynamic> _$ValueYbqbToJson(ValueYbqb instance) => <String, dynamic>{
@@ -200,9 +232,9 @@ Map<String, dynamic> _$ValueYbqbToJson(ValueYbqb instance) => <String, dynamic>{
 };
 
 ActionVal _$ActionValFromJson(Map<String, dynamic> json) => ActionVal(
-  value: json['value'] as String,
-  base: json['base'] as String,
-  visibility: json['visibility'] as String,
+  value: json['value'] as String?,
+  base: json['base'] as String?,
+  visibility: json['visibility'] as String?,
 );
 
 Map<String, dynamic> _$ActionValToJson(ActionVal instance) => <String, dynamic>{
