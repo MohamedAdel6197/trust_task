@@ -13,6 +13,7 @@ import 'core/helper/extensions.dart';
 import 'core/helper/shared_pref_helper.dart';
 import 'core/routing/app_router.dart';
 import 'core/utils/bloc_observer.dart';
+import 'features/guest_card/logic/cubit/guest_card_cubit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -32,7 +33,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  Locale _locale = const Locale('en');
+  Locale _locale = const Locale('ar');
 
   final GlobalKey<NavigatorState> _navigatorKey = GlobalKey<NavigatorState>();
   @override
@@ -54,19 +55,22 @@ class _MyAppState extends State<MyApp> {
     return ScreenUtilInit(
       designSize: const Size(375, 812),
       minTextAdapt: true,
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        navigatorKey: _navigatorKey,
-        locale: _locale,
-        localizationsDelegates: const [
-          AppLocalizations.delegate,
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate,
-        ],
-        supportedLocales: const [Locale('en'), Locale('ar')],
-        initialRoute: isLoggedInUser ? Routes.homeScreen : Routes.startScreen,
-        onGenerateRoute: widget.appRouter.generateRoute,
+      child: BlocProvider(
+        create: (context) => getIt<GuestCardCubit>()..getGuestCart(),
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          navigatorKey: _navigatorKey,
+          locale: _locale,
+          localizationsDelegates: const [
+            AppLocalizations.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          supportedLocales: const [Locale('en'), Locale('ar')],
+          initialRoute: isLoggedInUser ? Routes.homeScreen : Routes.startScreen,
+          onGenerateRoute: widget.appRouter.generateRoute,
+        ),
       ),
     );
   }

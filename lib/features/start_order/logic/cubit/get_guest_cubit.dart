@@ -1,8 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:trust_task/features/start_order/logic/cubit/get_guest_state.dart';
 
 import '../../../../core/networking/api_result/api_result.dart';
 import '../../data/repositories/guest_repo.dart';
+import 'get_guest_state.dart';
 
 class GetGuestCubit extends Cubit<GetGuestState> {
   GetGuestCubit(this.repository) : super(const GetGuestState.initial());

@@ -3,7 +3,11 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/constants/app_colors.dart';
+import '../../../../core/routing/routes.dart';
 import '../../../../locale_keys.dart';
+import '../../../guest_card/logic/cubit/guest_card_cubit.dart';
+import '../../../guest_card/logic/cubit/guest_card_state.dart';
+import '../../../guest_card/presentation/widgets/cart_button.dart';
 import '../../logic/cubit/get_categories_cubit.dart';
 import '../../logic/cubit/get_categories_state.dart';
 import '../widgets/category_tab_ui.dart';
@@ -42,7 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
         notchMargin: 10,
         color: AppColors.secondary,
         child: SizedBox(
-          height: 60,
+          height: 55,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -88,8 +92,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text(
-                      'Error Loading Categories',
+                    Text(
+                      LocaleKeys.errorLoadingCategories,
                       style: TextStyle(color: Colors.red, fontSize: 18),
                     ),
                     const SizedBox(height: 16),
@@ -102,14 +106,19 @@ class _HomeScreenState extends State<HomeScreen> {
                       onPressed: () {
                         context.read<GetCategoriesCubit>().getCategories();
                       },
-                      child: const Text('Retry'),
+                      child: Text(LocaleKeys.retry),
                     ),
                   ],
                 ),
               ),
               success: (categories) {
                 if (categories.isEmpty) {
-                  return const Center(child: Text('No categories found.'));
+                  return Center(
+                    child: Text(
+                      LocaleKeys.noCategoriesFoundTitle,
+                      style: TextStyle(color: Colors.red, fontSize: 18),
+                    ),
+                  );
                 }
 
                 // Ensure index is valid ensuring hot reload safety etc
@@ -172,9 +181,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       child:
                           selectedCategory.products == null ||
                               selectedCategory.products!.isEmpty
-                          ? const Center(
+                          ? Center(
                               child: Text(
-                                'No products in this category \n Will be added soon',
+                                LocaleKeys.noProductFoundMsg,
                                 style: TextStyle(
                                   color: Colors.red,
                                   fontSize: 18,
@@ -187,15 +196,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               itemBuilder: (context, index) {
                                 final product =
                                     selectedCategory.products![index];
-                                return ProductListItem(
-                                  image: product.image ?? '',
-                                  name: widget.locale.languageCode == 'ar'
-                                      ? product.nameAr ?? ''
-                                      : product.nameEn ?? '',
-                                  price: widget.locale.languageCode == 'ar'
-                                      ? "${product.price} ج.م"
-                                      : "${product.price} EGP",
-                                );
+                                return ProductListItem(product: product);
                               },
                             ),
                     ),
@@ -222,7 +223,7 @@ class _HomeScreenState extends State<HomeScreen> {
         children: [
           Icon(
             icon,
-            color: isSelected ? AppColors.brown : Colors.grey.shade600,
+            color: isSelected ? AppColors.brown : Colors.grey.shade500,
             size: 26,
           ),
           const SizedBox(height: 4),
@@ -249,38 +250,29 @@ class CustomFloatingActionButton extends StatelessWidget {
       width: 70,
       height: 70,
       child: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushNamed(context, Routes.guestCart);
+        },
         backgroundColor: AppColors.brown,
         shape: const CircleBorder(),
         elevation: 5,
-        child: Stack(
-          alignment: Alignment.center,
-          children: [
-            const Icon(
-              Icons.shopping_basket_outlined,
-              color: Colors.white,
-              size: 30,
-            ),
-            Positioned(
-              top: 0,
-              right: 0,
-              child: Container(
-                padding: const EdgeInsets.all(4),
-                decoration: const BoxDecoration(
-                  color: Colors.white,
-                  shape: BoxShape.circle,
-                ),
-                child: const Text(
-                  '1',
-                  style: TextStyle(
-                    color: AppColors.brown,
-                    fontSize: 12,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-            ),
-          ],
+        child: BlocBuilder<GuestCardCubit, GuestCardState>(
+          builder: (context, state) {
+            int count = 0;
+            state.maybeWhen(
+              getGuestCartSuccess: (response) {
+                count = response.totalItems ?? 0;
+              },
+              orElse: () {},
+            );
+            return CartButton(
+              onPressed: () {
+                Navigator.pushNamed(context, Routes.guestCart);
+              },
+              hasBadge: count > 0,
+              badgeCount: count,
+            );
+          },
         ),
       ),
     );
