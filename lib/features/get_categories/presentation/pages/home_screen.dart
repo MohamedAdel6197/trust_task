@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 import '../../../../core/constants/app_colors.dart';
 import '../../../../core/routing/routes.dart';
@@ -86,8 +87,8 @@ class _HomeScreenState extends State<HomeScreen> {
         child: BlocBuilder<GetCategoriesCubit, GetCategoriesState>(
           builder: (context, state) {
             return state.when(
-              initial: () => const Center(child: CircularProgressIndicator()),
-              loading: () => const Center(child: CircularProgressIndicator()),
+              initial: () => _buildHomeSkeleton(),
+              loading: () => _buildHomeSkeleton(),
               failure: (error) => Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -210,6 +211,72 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
+  Widget _buildHomeSkeleton() {
+    return Skeletonizer(
+      enabled: true,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const SizedBox(height: 16),
+          // Categories Tabs Skeleton
+          SizedBox(
+            height: 50,
+            child: ListView.separated(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              scrollDirection: Axis.horizontal,
+              itemCount: 8,
+              separatorBuilder: (context, index) => const SizedBox(width: 12),
+              itemBuilder: (context, index) {
+                return Container(
+                  width: 120,
+                  decoration: BoxDecoration(
+                    color: AppColors.lightGrey,
+                    borderRadius: BorderRadius.circular(25),
+                  ),
+                );
+              },
+            ),
+          ),
+          const SizedBox(height: 20),
+          // Category Title Skeleton
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Container(
+              width: 150,
+              height: 24,
+              decoration: BoxDecoration(
+                color: AppColors.grey,
+                borderRadius: BorderRadius.circular(4),
+              ),
+            ),
+          ),
+          const SizedBox(height: 10),
+          // Products List Skeleton
+          Expanded(
+            child: ListView.builder(
+              itemCount: 13,
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16.0,
+                    vertical: 8.0,
+                  ),
+                  child: Container(
+                    height: 100,
+                    decoration: BoxDecoration(
+                      color: AppColors.lightGrey,
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   Widget _buildNavItem({
     required IconData icon,
     required String label,
@@ -258,13 +325,7 @@ class CustomFloatingActionButton extends StatelessWidget {
         elevation: 5,
         child: BlocBuilder<GuestCardCubit, GuestCardState>(
           builder: (context, state) {
-            int count = 0;
-            state.maybeWhen(
-              getGuestCartSuccess: (response) {
-                count = response.totalItems ?? 0;
-              },
-              orElse: () {},
-            );
+            int count = context.read<GuestCardCubit>().cartItemsCount;
             return CartButton(
               onPressed: () {
                 Navigator.pushNamed(context, Routes.guestCart);

@@ -41,6 +41,22 @@ dev_dependencies:
   flutter_lints: ^6.0.0
   build_runner: ^2.10.5
   retrofit_generator: ^10.2.1
+  flutter_native_splash: ^2.4.7
+  flutter_launcher_icons: ^0.14.4
+
+
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/iconT.png" 
+  adaptive_icon_background: "#E60028"
+
+  adaptive_icon_foreground: "assets/images/iconT.png"
+  remove_alpha_ios: true
+
+
+
 
 flutter:
 

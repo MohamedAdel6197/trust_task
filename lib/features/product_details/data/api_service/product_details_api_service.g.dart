@@ -22,35 +22,6 @@ class _ProductDetailsApiService implements ProductDetailsApiService {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<List<Product>> getProductDetails(int productId) async {
-    final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{r'product_id': productId};
-    final _headers = <String, dynamic>{};
-    const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<List<Product>>(
-      Options(method: 'GET', headers: _headers, extra: _extra)
-          .compose(
-            _dio.options,
-            'custom-api/v1/products',
-            queryParameters: queryParameters,
-            data: _data,
-          )
-          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
-    );
-    final _result = await _dio.fetch<List<dynamic>>(_options);
-    late List<Product> _value;
-    try {
-      _value = _result.data!
-          .map((dynamic i) => Product.fromJson(i as Map<String, dynamic>))
-          .toList();
-    } on Object catch (e, s) {
-      errorLogger?.logError(e, s, _options, response: _result);
-      rethrow;
-    }
-    return _value;
-  }
-
-  @override
   Future<ProductAddOns> getProductAddons(int productId) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r'product_id2': productId};

@@ -41,7 +41,7 @@ class AppRouter {
         final product = settings.arguments as Product;
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
-            create: (context) => ProductDetailsCubit(getIt(), getIt())
+            create: (context) => ProductDetailsCubit(getIt())
               ..setProduct(product)
               // ..getProductDetails(product.id!)
               ..getProductAddons(product.id!),

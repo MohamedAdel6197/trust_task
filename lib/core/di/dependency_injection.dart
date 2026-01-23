@@ -41,7 +41,7 @@ Future<void> setupGetIt() async {
     () => ProductDetailsRepo(getIt()),
   );
   getIt.registerFactory<ProductDetailsCubit>(
-    () => ProductDetailsCubit(getIt(), getIt()),
+    () => ProductDetailsCubit(getIt()),
   );
 
   // guest cart

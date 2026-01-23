@@ -49,7 +49,7 @@ class _CartApiServices implements CartApiServices {
   }
 
   @override
-  Future<AddToCartResponse> addToOrRemoveFromCart(
+  Future<AddToOrRemoveFromCartResponse> addToGuestCart(
     AddToCartRequest addToCartRequest,
   ) async {
     final _extra = <String, dynamic>{};
@@ -57,7 +57,7 @@ class _CartApiServices implements CartApiServices {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(addToCartRequest.toJson());
-    final _options = _setStreamType<AddToCartResponse>(
+    final _options = _setStreamType<AddToOrRemoveFromCartResponse>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
@@ -68,9 +68,40 @@ class _CartApiServices implements CartApiServices {
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late AddToCartResponse _value;
+    late AddToOrRemoveFromCartResponse _value;
     try {
-      _value = AddToCartResponse.fromJson(_result.data!);
+      _value = AddToOrRemoveFromCartResponse.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options, response: _result);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
+  Future<AddToOrRemoveFromCartResponse> removeFromGuestCart(
+    String guestId,
+    RemoveFromCartRequest removeFromCartRequest,
+  ) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'guest_id': guestId};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(removeFromCartRequest.toJson());
+    final _options = _setStreamType<AddToOrRemoveFromCartResponse>(
+      Options(method: 'DELETE', headers: _headers, extra: _extra)
+          .compose(
+            _dio.options,
+            'guestcart/v1/cart',
+            queryParameters: queryParameters,
+            data: _data,
+          )
+          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
+    );
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late AddToOrRemoveFromCartResponse _value;
+    try {
+      _value = AddToOrRemoveFromCartResponse.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options, response: _result);
       rethrow;

@@ -8,6 +8,7 @@ class GuestCartResponse {
   List<CartItem>? cartItems;
   @JsonKey(name: "total_price")
   String? totalPrice;
+  @JsonKey(name: "VAT")
   String? vat;
   @JsonKey(name: "total_price_with_tax")
   String? totalPriceWithTax;

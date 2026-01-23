@@ -3,7 +3,7 @@ import 'package:gap/gap.dart';
 
 import '../../../../core/constants/app_colors.dart';
 import '../../../../locale_keys.dart';
-import '../../data/model/guest_cart_response.dart';
+import '../../data/model/get_guest_cart/guest_cart_response.dart';
 
 class PaymentDetailsWidget extends StatelessWidget {
   final GuestCartResponse cartResponse;

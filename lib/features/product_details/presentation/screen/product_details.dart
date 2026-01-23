@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gap/gap.dart';
 
 import '../../../../core/constants/app_colors.dart';
-import '../../../../core/networking/api_result/api_result.dart';
+import '../../../../core/constants/string_constants.dart';
+import '../../../../core/helper/shared_pref_helper.dart';
 import '../../../get_categories/data/models/response/product.dart';
-import '../../../guest_card/data/model/add_to_cart_request.dart' as req;
+import '../../../guest_card/data/model/add_to_cart/add_to_cart_request.dart';
 import '../../../guest_card/logic/cubit/guest_card_cubit.dart';
 import '../../data/model/product_addons_response.dart';
 import '../../logic/cubit/product_detail_cubit.dart';
@@ -54,7 +56,7 @@ class _ProductDetailsState extends State<ProductDetails> {
           return state.when(
             initial: () => const Center(child: CircularProgressIndicator()),
             loading: () => const Center(child: CircularProgressIndicator()),
-            success: (products, addonsResponse) {
+            success: (products, addons) {
               if (products.isEmpty) {
                 return const Center(child: Text('No product found'));
               }
@@ -63,7 +65,7 @@ class _ProductDetailsState extends State<ProductDetails> {
               return SafeArea(
                 child: Column(
                   children: [
-                    CustomAppBar(),
+                    const CustomAppBar(),
                     Expanded(
                       child: SingleChildScrollView(
                         child: Column(
@@ -107,45 +109,45 @@ class _ProductDetailsState extends State<ProductDetails> {
                                 ],
                               ),
                             ),
+                            const Gap(8),
 
                             // Description Section
-                            Container(
-                              width: double.infinity,
-                              color: Colors.white.withOpacity(0.5),
-                              padding: const EdgeInsets.all(16),
-                              child: Text(
-                                locale.languageCode == 'en'
+                            if ((locale.languageCode == 'en'
                                     ? firstProduct.descriptionEn ?? ''
-                                    : firstProduct.descriptionAr ?? '',
-                                style: const TextStyle(
-                                  fontSize: 16,
-                                  color: AppColors.brown,
+                                    : firstProduct.descriptionAr ?? '') !=
+                                "")
+                              Container(
+                                width: double.infinity,
+                                color: Colors.white.withValues(alpha: 0.5),
+                                padding: const EdgeInsets.all(16),
+                                child: Text(
+                                  locale.languageCode == 'en'
+                                      ? firstProduct.descriptionEn ?? ''
+                                      : firstProduct.descriptionAr ?? '',
+                                  style: const TextStyle(
+                                    fontSize: 16,
+                                    color: AppColors.brown,
+                                  ),
                                 ),
                               ),
-                            ),
+                            const Gap(8),
 
                             // Addons Sections
-                            if (addonsResponse != null &&
-                                addonsResponse.blocks != null)
-                              ...addonsResponse.blocks!.expand((block) {
+                            if (addons != null && addons.blocks != null)
+                              ...addons.blocks!.expand((block) {
                                 return block.addons?.map((addon) {
-                                      return Column(
-                                        children: [
-                                          ProductOptionsSection(
-                                            title: locale.languageCode == 'en'
-                                                ? addon.title ?? ''
-                                                : addon.titleAr ?? '',
-                                            options: addon.options ?? [],
-                                            onOptionSelected: (selected) {
-                                              setState(() {
-                                                selectedOptionsMap[addon.id ??
-                                                        (addon.title ?? '')] =
-                                                    selected;
-                                              });
-                                            },
-                                          ),
-                                          const SizedBox(height: 1),
-                                        ],
+                                      return ProductOptionsSection(
+                                        title: locale.languageCode == 'en'
+                                            ? addon.title ?? ''
+                                            : addon.titleAr ?? '',
+                                        options: addon.options ?? [],
+                                        onOptionSelected: (selected) {
+                                          setState(() {
+                                            selectedOptionsMap[addon.id ??
+                                                    (addon.title ?? '')] =
+                                                selected;
+                                          });
+                                        },
                                       );
                                     }) ??
                                     [];
@@ -159,48 +161,7 @@ class _ProductDetailsState extends State<ProductDetails> {
 
                     // Bottom Button Area
                     AddToCartButton(
-                      onPressed: () async {
-                        final List<req.AddonInRequest> addonsInRequest =
-                            selectedOptionsMap.entries
-                                .map(
-                                  (entry) => req.AddonInRequest(
-                                    id: int.tryParse(entry.key) ?? 0,
-                                    name: entry.value.label,
-                                    price: entry.value.price,
-                                  ),
-                                )
-                                .toList();
-
-                        final result = await context
-                            .read<ProductDetailsCubit>()
-                            .addToGuestCart(
-                              productId: firstProduct.id ?? 0,
-                              quantity: quantity,
-                              addons: addonsInRequest,
-                            );
-
-                        if (context.mounted) {
-                          result.when(
-                            success: (response) {
-                              context.read<GuestCardCubit>().getGuestCart();
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: Text(
-                                    response.message ?? 'Added to cart',
-                                  ),
-                                ),
-                              );
-                            },
-                            failure: (error) {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: Text('Error: ${error.toString()}'),
-                                ),
-                              );
-                            },
-                          );
-                        }
-                      },
+                      onPressed: () => _onAddToCartPressed(firstProduct),
                     ),
                   ],
                 ),
@@ -212,5 +173,47 @@ class _ProductDetailsState extends State<ProductDetails> {
         },
       ),
     );
+  }
+
+  void _onAddToCartPressed(Product product) async {
+    final addonsInRequest = _getSelectedAddons();
+    final guestId = await SharedPrefHelper.getSecuredString(
+      AppConstants.guestId,
+    );
+
+    if (mounted) {
+      await context.read<GuestCardCubit>().addToCart(
+        AddToCartRequest(
+          guestId: guestId,
+          items: [
+            Item(
+              productId: product.id ?? 0,
+              quantity: quantity,
+              addons: addonsInRequest,
+            ),
+          ],
+        ),
+      );
+
+      if (mounted) {
+        _showSnackBar('Added to cart');
+      }
+    }
+  }
+
+  List<AddonInRequest> _getSelectedAddons() {
+    return selectedOptionsMap.entries.map((entry) {
+      return AddonInRequest(
+        id: int.tryParse(entry.key) ?? 0,
+        name: entry.value.label,
+        price: entry.value.price,
+      );
+    }).toList();
+  }
+
+  void _showSnackBar(String message) {
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text(message)));
   }
 }

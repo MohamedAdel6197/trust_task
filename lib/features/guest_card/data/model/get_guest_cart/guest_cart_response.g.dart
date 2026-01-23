@@ -12,7 +12,7 @@ GuestCartResponse _$GuestCartResponseFromJson(Map<String, dynamic> json) =>
           ?.map((e) => CartItem.fromJson(e as Map<String, dynamic>))
           .toList(),
       totalPrice: json['total_price'] as String?,
-      vat: json['vat'] as String?,
+      vat: json['VAT'] as String?,
       totalPriceWithTax: json['total_price_with_tax'] as String?,
       totalItems: (json['total_items'] as num?)?.toInt(),
       totalPoints: json['total_points'] as String?,
@@ -22,7 +22,7 @@ Map<String, dynamic> _$GuestCartResponseToJson(GuestCartResponse instance) =>
     <String, dynamic>{
       'cart_items': instance.cartItems,
       'total_price': instance.totalPrice,
-      'vat': instance.vat,
+      'VAT': instance.vat,
       'total_price_with_tax': instance.totalPriceWithTax,
       'total_items': instance.totalItems,
       'total_points': instance.totalPoints,

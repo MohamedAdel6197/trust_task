@@ -35,12 +35,12 @@ class _ProductOptionsSectionState extends State<ProductOptionsSection> {
     final locale = Localizations.localeOf(context);
     return Container(
       width: double.infinity,
-      color: Colors.white.withValues(alpha: 0.5), // Semi-transparent background
+      color: Colors.white.withValues(alpha: 0.5),
+      margin: const EdgeInsets.symmetric(vertical: 4),
       padding: const EdgeInsets.all(16),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start, //
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Title with red asterisk
           RichText(
             text: TextSpan(
               children: [
@@ -80,8 +80,10 @@ class _ProductOptionsSectionState extends State<ProductOptionsSection> {
               child: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 8.0),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
+                    _buildRadioButton(option == _selectedOption),
+                    const SizedBox(width: 12),
+
                     Text(
                       label ?? '',
                       style: const TextStyle(
@@ -89,8 +91,6 @@ class _ProductOptionsSectionState extends State<ProductOptionsSection> {
                         color: AppColors.brown,
                       ),
                     ),
-                    const SizedBox(width: 12),
-                    _buildRadioButton(option == _selectedOption),
                   ],
                 ),
               ),
@@ -107,18 +107,16 @@ class _ProductOptionsSectionState extends State<ProductOptionsSection> {
       height: 24,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        border: Border.all(
-          color: Colors.black, // Black border for unselected
-        ),
+        border: Border.all(color: Colors.black, width: 1.5),
       ),
       child: isSelected
           ? Center(
               child: Container(
-                width: 14,
-                height: 14,
+                width: 16,
+                height: 16,
                 decoration: const BoxDecoration(
                   shape: BoxShape.circle,
-                  color: Colors.black, // Selected fill
+                  color: Colors.black,
                 ),
               ),
             )

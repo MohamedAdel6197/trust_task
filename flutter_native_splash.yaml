@@ -1,0 +1,13 @@
+flutter_native_splash:
+  android: true
+  ios: true
+  color: "#E60028"
+  image: assets/images/iconT.png
+  image_dark: assets/images/iconT.png
+  android_gravity: center
+  ios_content_mode: scaleAspectFill
+
+  android_12:
+    image: assets/images/iconT.png
+    color: "#E60028"
+    icon_background_color: "#E60028"

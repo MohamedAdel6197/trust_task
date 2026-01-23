@@ -30,13 +30,7 @@ class CustomAppBar extends StatelessWidget {
           ),
           BlocBuilder<GuestCardCubit, GuestCardState>(
             builder: (context, state) {
-              int count = 0;
-              state.maybeWhen(
-                getGuestCartSuccess: (response) {
-                  count = response.totalItems ?? 0;
-                },
-                orElse: () {},
-              );
+              int count = context.read<GuestCardCubit>().cartItemsCount;
               return CartButton(
                 onPressed: () {
                   Navigator.pushNamed(context, Routes.guestCart);
