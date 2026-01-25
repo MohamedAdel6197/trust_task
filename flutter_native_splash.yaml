@@ -1,7 +1,7 @@
 flutter_native_splash:
   android: true
   ios: true
-  color: "#E60028"
+  color: "#F3B4B9"
   image: assets/images/iconT.png
   image_dark: assets/images/iconT.png
   android_gravity: center
@@ -9,5 +9,5 @@ flutter_native_splash:
 
   android_12:
     image: assets/images/iconT.png
-    color: "#E60028"
-    icon_background_color: "#E60028"
+    color: "#F3B4B9"
+    icon_background_color: "#F3B4B9"

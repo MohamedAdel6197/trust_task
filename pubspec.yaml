@@ -50,7 +50,7 @@ flutter_icons:
   android: true
   ios: true
   image_path: "assets/images/iconT.png" 
-  adaptive_icon_background: "#E60028"
+  adaptive_icon_background: "#F3B4B9"
 
   adaptive_icon_foreground: "assets/images/iconT.png"
   remove_alpha_ios: true

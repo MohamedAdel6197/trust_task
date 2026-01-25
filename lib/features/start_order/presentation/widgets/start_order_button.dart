@@ -35,7 +35,7 @@ class _StartOrderButtonState extends State<StartOrderButton> {
               context: context,
               builder: (context) => AlertDialog(
                 title: Text(LocaleKeys.error),
-                content: Text(error.toString()),
+                content: Text(error.failure.messageOfError),
                 actions: [
                   TextButton(
                     onPressed: () => Navigator.pop(context),

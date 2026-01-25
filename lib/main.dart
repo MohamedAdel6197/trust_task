@@ -33,7 +33,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  Locale _locale = const Locale('ar');
+  Locale _locale = const Locale('en');
 
   final GlobalKey<NavigatorState> _navigatorKey = GlobalKey<NavigatorState>();
   @override
